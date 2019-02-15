@@ -1,0 +1,23 @@
+{
+  "name": "koa2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "arche",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-cors": "0.0.16",
+    "koa-router": "^7.4.0",
+    "md5": "^2.2.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.11",
+    "tracer": "^0.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
