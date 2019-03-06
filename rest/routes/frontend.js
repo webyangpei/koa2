@@ -9,12 +9,12 @@ const cors = require('koa-cors')
 const router = require('koa-router')();
 
 // cors 处理跨域
-// router.all('/*', async (ctx,next)=>{
-//   ctx.set("Access-Control-Allow-Origin", "*");
-//   // 后端允许cors跨域请求
-//   await cors();
-//   await next();
-// });
+router.all('/*', async (ctx,next)=>{
+  ctx.set("Access-Control-Allow-Origin", "*");
+  // 后端允许cors跨域请求
+  await cors();
+  await next();
+});
 
 // 前端sinn Api
 router
