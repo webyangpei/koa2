@@ -16,7 +16,7 @@ router.all('/*', async (ctx,next)=>{
 });
 
 const home = require('./home');
-Router.use('/', home.routes({ prefix: '/api' }), home.allowedMethods());
+router.use('/', home.routes({ prefix: '/api' }), home.allowedMethods());
 
 module.exports = router;
 
