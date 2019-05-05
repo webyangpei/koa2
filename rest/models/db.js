@@ -7,7 +7,7 @@ const config = require('../../config/common');
 
 const dbConfig = config[process.env.NODE_ENV || 'development'];
 
-mongoose.connect(dbConfig.mongo.uri);
+mongoose.connect(dbConfig.mongo.uri, { useNewUrlParser: true })
 
 // 连接成功
 mongoose.connection.on('connected',  () => {

@@ -36,14 +36,6 @@ app.use(convert(koaStatic(
 	path.join(__dirname, './../static')
 )));
 
-// 监听响应时间 log中间件中应该有此功能
-// app.use(async (ctx, next) => {
-//     const start = new Date();
-//     await next();
-//     const ms = new Date() - start;
-//     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-// });
-
 // 配置响应中间件
 app.use(require('./rest/middlewares/response'));
 
