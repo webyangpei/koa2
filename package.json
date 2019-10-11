@@ -6,7 +6,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon start.js"
+    "start": "nodemon start.js",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "author": "arche",
   "license": "ISC",
@@ -27,6 +33,8 @@
     "tracer": "^0.9.8"
   },
   "devDependencies": {
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "nodemon": "^1.18.10"
   }
 }
