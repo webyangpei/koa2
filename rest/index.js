@@ -4,10 +4,6 @@
 // const backendRouter = require('./routes/backend');
 const frontendRouter = require('./routes/frontend');
 
-
-
-
-
 module.exports = {
     frontendRouter
 }
