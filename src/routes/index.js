@@ -6,7 +6,7 @@
 const Router = require('koa-router');
 const cors = require('koa-cors'); // 处理跨域
 
-const router = new Router()
+const router = new Router({ prefix: '/api' });
 // cors 处理跨域
 router.all('/*', async (ctx,next)=>{
 	ctx.set("Access-Control-Allow-Origin", "*");
@@ -15,8 +15,16 @@ router.all('/*', async (ctx,next)=>{
 	await next();
 });
 
-const home = require('./home');
-router.use('/', home.routes({ prefix: '/api' }), home.allowedMethods());
+
+// 每一个模块的相关API - 根据表的相关性来设计
+
+// 登录
+const Users = require('./user');
+router.use('/user', Users.routes(), Users.allowedMethods());
+
+// 用户登录之后首页模块
+const Home = require('./home');
+router.use('/home', Home.routes(), Home.allowedMethods());
 
 module.exports = router;
 

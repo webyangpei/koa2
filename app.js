@@ -6,8 +6,8 @@ const koaStatic = require('koa-static');
 const session = require('koa-session-minimal');
 const koaLogger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
-const db = require('./rest/models/db');
-const { frontendRouter } = require('./rest/index');
+const db = require('./src/models/db');
+const { API } = require('./src/index');
 
 const app = new Koa();
 
@@ -37,14 +37,14 @@ app.use(convert(koaStatic(
 )));
 
 // 配置响应中间件
-app.use(require('./rest/middlewares/response'));
+app.use(require('./src/middlewares/response'));
 
 // 配置 统一try catch处理中间件
-app.use(require('./rest/middlewares/filter'));
+app.use(require('./src/middlewares/filter'));
 
 
 // 拦截请求
-app.use(frontendRouter.routes()).use(frontendRouter.allowedMethods());
+app.use(API.routes()).use(API.allowedMethods());
 
 
 //  监听启动端口

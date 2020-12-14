@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-const { UserModel } = require('../../models/index');
-// const Articlemodel = mongoose.model('Article');
+const { UserModel } = require('../models');
 
 class HomeController {
     // 首页数据加载
-    static async query(ctx){
+    static async query(ctx, next){
         const newdate = moment().format('YYYY-MM-DD HH:mm'); // 当前时间
         const weekdate = moment().subtract(7, 'days').format('YYYY-MM-DD HH:mm'); // 7天前
         const time = newdate - weekdate
