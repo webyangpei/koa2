@@ -4,7 +4,7 @@
 */
 
 const Router = require('koa-router');
-const cors = require('koa-cors')
+const cors = require('koa-cors'); // 处理跨域
 
 const router = new Router()
 // cors 处理跨域
