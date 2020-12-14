@@ -43,9 +43,7 @@ app.use(require('./rest/middlewares/response'));
 app.use(require('./rest/middlewares/filter'));
 
 
-// 初始化路由中间件
-// app.use(backendRouter.routes())
-//    .use(backendRouter.allowedMethods());
+// 拦截请求
 app.use(frontendRouter.routes()).use(frontendRouter.allowedMethods());
 
 
