@@ -1,10 +1,12 @@
-const dayjs = require('dayjs');
-
 const { UserModel } = require('../models');
 
 class HomeController {
 
-  // 注册用户
+  /**
+   * 用户注册
+   * @param ctx
+   * @returns {Promise<void|*>}
+   */
   static async register(ctx) {
     let user = new UserModel();
     user.name = ctx.request.body.name
@@ -15,23 +17,62 @@ class HomeController {
       data: result
     });
   }
-  // 获取所有用户
+
+  /**
+   * 获取用户列表
+   * @param ctx
+   * @returns {Promise<void|*>}
+   */
   static async getAllUser(ctx) {
-    // let user = new UserModel();
     const result = await UserModel.find();
     return ctx.success({
       data: result
     });
   }
-  // 用户相关操作
-  static async query(ctx){
-    const newdate = dayjs().format('YYYY-MM-DD HH:mm'); // 当前时间
-    const weekdate = dayjs().subtract(7, 'days').format('YYYY-MM-DD HH:mm'); // 7天前
-    const time = newdate - weekdate
-    // 获取用户总数
-    const usersNum = await UserModel.find();
-    // 获取当前用户信息
-    return ctx.success({ data: { usersNum, time, newdate } });
+
+
+  static async deleteByIds(ctx) {
+    const result = await UserModel.find();
+    return ctx.success({
+      data: result
+    });
+  }
+
+  /**
+   * 用户登录
+   * @returns {Promise<void>}
+   */
+  static async login(ctx) {
+    // 检查是否已经登录
+    if (ctx.session.username) {
+      return ctx.success({
+        msg: '已经登录，请不要重复登录'
+      });
+    }
+    // 查询用户名是否存在 -如果存在> 查询用户名密码是否存在且匹配 -如果匹配> 存入session 存入redis
+    const { name, password } = ctx.request.query
+    const result = await UserModel.find({ name, password });
+    if (result && result.length) {
+      return ctx.success({
+        data: result,
+        msg: '登录成功'
+      });
+      // 存入session -》 存入redis
+      ctx.session.username = ctx.request.query.name;
+    } else {
+      ctx.error({msg: new Error('未知错误!')});
+      return ctx.error({
+        code: 11,
+        msg: '用户名或者密码不存在'
+      })
+    }
+  }
+
+  /**
+   * 用户退出登录 - 从session 和 redis 中移除存储
+   * @returns {Promise<void>}
+   */
+  static async logout() {
   }
 }
 
