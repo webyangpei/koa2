@@ -31,10 +31,12 @@
     "lodash": "^4.17.19",
     "md5": "^2.2.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.11.8",
     "tracer": "^0.9.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/register": "^7.12.10",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "nodemon": "^1.18.10"
