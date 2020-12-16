@@ -2,7 +2,7 @@
 * @ use 统一try catch处理中间件
 * @ 用于捕获内部错误，输出日志信息
 */
-const tracer = require('tracer');
+const tracer = require('tracer'); // 用于日志跟踪
 
 const logger = tracer.colorConsole({
   level: 'error',

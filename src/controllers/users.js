@@ -60,7 +60,6 @@ class HomeController {
       // 存入session -》 存入redis
       ctx.session.username = ctx.request.query.name;
     } else {
-      ctx.error({msg: new Error('未知错误!')});
       return ctx.error({
         code: 11,
         msg: '用户名或者密码不存在'
