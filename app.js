@@ -6,8 +6,11 @@ const koaStatic = require('koa-static');
 const koaLogger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const session = require('koa-session-minimal');
+const jwt = require('jsonwebtoken');
 const {connectDB} = require('./src/models/db');
 const {API} = require('./src/index');
+const tokenConfig = { privateKey: 'xxxxxxx' }; // 设置加密私钥
+
 
 const app = new Koa();
 
