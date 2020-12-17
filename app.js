@@ -6,21 +6,22 @@ const koaStatic = require('koa-static');
 const koaLogger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const session = require('koa-session-minimal');
-const { connectDB } = require('./src/models/db');
-const { API } = require('./src/index');
+const {connectDB} = require('./src/models/db');
+const {API} = require('./src/index');
 
 const app = new Koa();
 
 // 配置session中间件
 app.use(session({
 	key: 'username',          // cooike中存储的键名 用户登录所使用的cooike
-  cookie: {                 // 与 cookie 相关的配置
-    domain: 'localhost',    // 写 cookie 所在的域名
-    path: '/',              // 写 cookie 所在的路径
-    maxAge: 1000 * 30,      // cookie 有效时长 30s
-    httpOnly: true,         // 是否只用于 http 请求中获取
-    overwrite: false        // 是否允许重写
-  }
+	                           // 支持在浏览器端生成一个cookie
+	cookie: {                 // 与 cookie 相关的配置
+		domain: 'localhost',    // 写 cookie 所在的域名
+		path: '/',              // 写 cookie 所在的路径
+		maxAge: 1000 * 30,      // cookie 有效时长 30s
+		httpOnly: true,         // 是否只用于 http 请求中获取
+		overwrite: false        // 是否允许重写
+	}
 }));
 
 // 配置控制台日志中间件
@@ -47,8 +48,8 @@ app.use(API.routes()).use(API.allowedMethods());
 
 // 等待数据库连接成功 然后启动程序
 connectDB().then(res => {
-  app.listen(config.port)
-  console.log('Server is running listen on port: ' + config.port)
+	app.listen(config.port)
+	console.log('Server is running listen on port: ' + config.port)
 })
 
 module.exports = app;
