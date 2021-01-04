@@ -9,7 +9,7 @@ class HomeController {
 	 */
 	static async register(ctx) {
 		let user = new UserModel();
-		user.name = ctx.request.body.name
+		user.username = ctx.request.body.username
 		user.nickName = ctx.request.body.nickName
 		user.password = ctx.request.body.password
 		const result = await user.save();
@@ -77,8 +77,8 @@ class HomeController {
 	 */
 	static async updateUserInfo(ctx) {
 		// 获取要更新的用户字段信息
-		const { userId, name, password, nickName } = ctx.request.body;
-		const result = await UserModel.update({ userId }, { name, password, nickName });
+		const { userId, username, password, nickName } = ctx.request.body;
+		const result = await UserModel.update({ userId }, { username, password, nickName });
 		return ctx.success({
 			data: result
 		});
@@ -96,16 +96,16 @@ class HomeController {
 			});
 		}
 		// 查询用户名是否存在 -如果存在> 查询用户名密码是否存在且匹配 -如果匹配> 存入session 存入redis
-		const {name, password} = ctx.request.query
-		const result = await UserModel.find({name, password});
+		const {username, password} = ctx.request.query
+		const result = await UserModel.find({username, password});
 		if (result && result.length) {
 			return ctx.success({
-				data: result,
+				data: result[0],
 				msg: '登录成功'
 			});
 			// 存入session -》 存入redis
 			ctx.session.user = {
-				username: ctx.request.query.name
+				username: ctx.request.query.username
 			}
 		} else {
 			return ctx.error({

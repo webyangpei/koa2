@@ -9,7 +9,8 @@ const cors = require('koa-cors'); // 处理跨域
 const router = new Router({ prefix: '/api' });
 // cors 处理跨域
 router.all('/*', async (ctx,next)=>{
-	ctx.set("Access-Control-Allow-Origin", "*");
+	ctx.set('Access-Control-Allow-Origin', 'http://localhost:8080');
+	ctx.set('Access-Control-Allow-Credentials', true);
 	// 后端允许cors跨域请求
 	await cors();
 	await next();
