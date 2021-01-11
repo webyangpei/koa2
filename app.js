@@ -51,6 +51,7 @@ app.use(API.routes()).use(API.allowedMethods());
 
 // 等待数据库连接成功 然后启动程序
 connectDB().then(res => {
+	console.log(res, '发生了什么');
 	app.listen(config.port)
 	console.log('Server is running listen on port: ' + config.port)
 })
