@@ -19,7 +19,7 @@ app.use(session({
 	key: 'username',          // cooike中存储的键名 用户登录所使用的cooike
 	                           // 支持在浏览器端生成一个cookie
 	cookie: {                 // 与 cookie 相关的配置
-		domain: 'localhost',    // 写 cookie 所在的域名
+		domain: 'webyangpei.com',    // 写 cookie 所在的域名
 		path: '/',              // 写 cookie 所在的路径
 		maxAge: 1000 * 30,      // cookie 有效时长 30s
 		httpOnly: true,         // 是否只用于 http 请求中获取
