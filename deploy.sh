@@ -1,6 +1,4 @@
 #! /bin/bash
-WEB_PATH=$PWD
-cd $WEB_PATH
 
 echo "拉取最新的代码"
 git reset --hard origin master
