@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "拉取最新的代码"
-git reset --hard origin master
+git checkout HEAD
 git clean -f
 git pull origin master
 echo -e "\033[32m代码拉取完成...\033[0m"
