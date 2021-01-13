@@ -24,8 +24,8 @@ const Users = require('./user');
 router.use('/user', Users.routes(), Users.allowedMethods());
 
 // 用户登录之后首页模块
-const Home = require('./home');
-router.use('/home', Home.routes(), Home.allowedMethods());
+// const Home = require('./home');
+// router.use('/home', Home.routes(), Home.allowedMethods());
 
 module.exports = router;
 
