@@ -7,5 +7,4 @@
 
 4. 继续编写用户相关API
 
-5. 在ECS服务器上重新安装nginx 重新安装mongoose mondoDB， 配置数据库远程链接；部署远程服务
 ```
