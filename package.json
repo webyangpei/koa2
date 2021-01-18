@@ -7,11 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon start.js",
+    "release": "standard-version",
     "commit": "git-cz"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "author": "arche",
@@ -38,8 +39,55 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/register": "^7.12.10",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@es/conventional-changelog-eshop": "^1.1.1",
     "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "nodemon": "^1.18.10"
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
+    "nodemon": "^1.18.10",
+    "standard-version": "^9.1.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "init",
+          "feat",
+          "fix",
+          "docs",
+          "style",
+          "release",
+          "refactor",
+          "perf",
+          "chore"
+        ]
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "changelog": {
+    "authorName": true,
+    "authorEmail": true,
+    "typeMap": {
+      "init": "初始化工程",
+      "feat": "新功能",
+      "fix": "问题修复",
+      "release": "版本发布",
+      "refactor": "代码重构",
+      "docs": "更新文档",
+      "style": "风格更新",
+      "perf": "优化性能",
+      "chore": "改变构建流程、或者增加辅助工具、依赖库等"
+    }
   }
 }
