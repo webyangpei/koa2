@@ -5,6 +5,7 @@ const handler = createHandler({ path: '/', secret: 'koa2_123456' })
 
 http.createServer((req, res) => {
 	handler(req, res, function(err) {
+		console.log(req, res, '打印了什么？')
 		res.statusCode = 404
 		res.end('no such location')
 	})
