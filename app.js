@@ -10,13 +10,8 @@ const jwt = require('jsonwebtoken');
 const {connectDB} = require('./src/models/db');
 const {API} = require('./src/index');
 const tokenConfig = { privateKey: 'xxxxxxx' }; // 设置加密私钥
-const createHandler = require('github-webhook-handler');
-const runCommand = require('child_process').spawn;
-
 
 const app = new Koa();
-// 监听远程仓库event事件
-const handler = createHandler({ path: '/deploy', secret: 'koa2_123456' });
 
 // 配置session中间件
 app.use(session({
@@ -60,18 +55,5 @@ connectDB().then(() => {
 	})
 
 })
-
-// 监听报错
-handler.on('error', function (err) {
-	console.error('Error:', err.message)
-});
-
-// 监听到push事件的时候执行我们的自动化脚本
-handler.on('push', function (event) {
-	console.log('Received a push event for %s to %s', event.payload.repository.name, event.payload.ref);
-		runCommand('sh', ['./deploy.sh'], function( txt ){
-			console.log(txt);
-		});
-});
 
 module.exports = app;
