@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ObjectId = mongoose.Types.ObjectId;
-
 const UserSchema = new Schema({
-	userId: new ObjectId,
+	userId: Schema.Types.ObjectId,
     userName: { type: String, required: true }, // 用户名
     nickName: { type: String, required: true }, // 昵称
     roleId: { type: Number, required: false, default: 0 }, // 角色Id - 默认0为超级管理员
