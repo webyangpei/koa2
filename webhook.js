@@ -1,6 +1,6 @@
 const http = require('http');
 const createHandler = require('github-webhook-handler');
-const handler = createHandler({ path: '/deploy', secret: 'koa2_123456' });
+const handler = createHandler({ path: '/', secret: 'koa2_123456' });
 // 上面的 secret 保持和 GitHub 后台设置的一致
 function run_cmd(cmd, args, callback) {
 	const spawn = require('child_process').spawn;
