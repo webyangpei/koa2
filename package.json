@@ -64,7 +64,8 @@
           "release",
           "refactor",
           "perf",
-          "chore"
+          "chore",
+          "build"
         ]
       ]
     }
