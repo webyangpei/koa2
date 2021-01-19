@@ -16,7 +16,7 @@ const runCommand = require('child_process').spawn;
 
 const app = new Koa();
 // 监听远程仓库event事件
-const handler = createHandler({ path: './deploy', secret: 'koa2_123456' });
+const handler = createHandler({ path: '/deploy', secret: 'koa2_123456' });
 
 // 配置session中间件
 app.use(session({
