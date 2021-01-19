@@ -15,6 +15,7 @@ handler.on('error', err => {
 })
 
 handler.on('push', e => {
+	console.log('这个e是什么', e)
 	try {
 		const s = spawn('sh', ['./deploy.sh'], {
 			cwd: `../${e.payload.repository.name}`
@@ -26,5 +27,7 @@ handler.on('push', e => {
 			console.log(`${e.payload.repository.name}: ${data}`);
 		});
 		console.log(e.payload.repository.name, 'has rebuild');
-	} catch (e) {}
+	} catch (err) {
+		console.log('打印错误', err)
+	}
 })
