@@ -5,6 +5,7 @@ const UserSchema = new Schema({
 	userid: mongoose.Types.ObjectId,
     username: { type: String, required: true }, // 用户名
     nickName: { type: String, required: true }, // 昵称
+    roleId: { type: Number, required: false }, // 角色Id
     email: { type: String, default: '' }, // 邮箱
     avatar: { type: String, default: '' }, // 头像
     profile: { type: String,default:'' },   // 个人简介
