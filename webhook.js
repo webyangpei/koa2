@@ -28,6 +28,6 @@ handler.on('push', e => {
 		});
 		console.log(e.payload.repository.name, 'has rebuild');
 	} catch (err) {
-		console.log('打印错误', err)
+		console.log('打印错误22', err)
 	}
 })
