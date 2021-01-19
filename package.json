@@ -41,7 +41,6 @@
     "@babel/register": "^7.12.10",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@es/conventional-changelog-eshop": "^1.1.1",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.8",
@@ -73,21 +72,6 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "changelog": {
-    "authorName": true,
-    "authorEmail": true,
-    "typeMap": {
-      "init": "初始化工程",
-      "feat": "新功能",
-      "fix": "问题修复",
-      "release": "版本发布",
-      "refactor": "代码重构",
-      "docs": "更新文档",
-      "style": "风格更新",
-      "perf": "优化性能",
-      "chore": "改变构建流程、或者增加辅助工具、依赖库等"
     }
   }
 }
