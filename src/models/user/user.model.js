@@ -8,7 +8,6 @@ const UserSchema = new Schema({
 	userId: countId, // 用户ID
     userName: { type: String, required: true }, // 用户名
     nickName: { type: String, required: true }, // 昵称
-    roleId: { type: Number, required: false, default: 0 }, // 角色Id - 默认0为超级管理员
     email: { type: String, default: '' }, // 邮箱
     avatar: { type: String, default: '' }, // 头像
     profile: { type: String,default:'' },   // 个人简介
