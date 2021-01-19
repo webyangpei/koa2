@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+let  count = 1;
+let countId = { type: Number, required: true, default: () => count++ }
+
 const UserSchema = new Schema({
-	userId: Schema.Types.ObjectId,
+	userId: countId, // 用户ID
     userName: { type: String, required: true }, // 用户名
     nickName: { type: String, required: true }, // 昵称
     roleId: { type: Number, required: false, default: 0 }, // 角色Id - 默认0为超级管理员
