@@ -12,7 +12,7 @@ http.createServer((req, res) => {
 }).listen(7777)
 
 handler.on('error', err => {
-	console.error('Error:', err.message)
+	console.error('Error:??', err.message)
 })
 
 handler.on('push', e => {
