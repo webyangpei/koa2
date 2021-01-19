@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-	userid: mongoose.Types.ObjectId(),
+	userid: mongoose.Types.ObjectId,
     username: { type: String, required: true }, // 用户名
     nickName: { type: String, required: true }, // 昵称
     email: { type: String, default: '' }, // 邮箱

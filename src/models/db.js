@@ -14,11 +14,11 @@ export function connectDB() {
 		// 连接成功
 		mongoose.connection.on('connected', () => {
 			console.log('Mongoose connection open to ' + dbConfig.mongo.uri);
-			const db = mongoose.connection.db;
-			db.dropDatabase( (err) => {
-				if (err) return cb(err);
-				mongoose.disconnect();
-			});
+			// const db = mongoose.connection.db;
+			// db.dropDatabase( (err) => {
+			// 	if (err) console.log(err);
+			// 	mongoose.disconnect();
+			// });
 			resolve()
 		});
 
