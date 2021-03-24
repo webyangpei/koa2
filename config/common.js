@@ -18,7 +18,7 @@ module.exports = {
     // 生产环境配置
     production: {
         mongo: {
-            uri: 'mongodb://39.105.65.92.:27107/myBlog'
+            uri: 'mongodb://39.105.65.92:27107/myBlog'
         },
         mysql: {
           host: 'localhost',

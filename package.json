@@ -7,11 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon start.js",
+    "release": "standard-version",
     "commit": "git-cz"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "author": "arche",
@@ -19,7 +20,9 @@
   "dependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
+    "child_process": "^1.0.2",
     "dayjs": "^1.9.7",
+    "github-webhook-handler": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
@@ -38,8 +41,40 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/register": "^7.12.10",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "nodemon": "^1.18.10"
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
+    "nodemon": "^1.18.10",
+    "standard-version": "^9.1.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "init",
+          "feat",
+          "fix",
+          "docs",
+          "style",
+          "release",
+          "refactor",
+          "perf",
+          "chore",
+          "build"
+        ]
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

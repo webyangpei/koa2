@@ -9,9 +9,9 @@ class HomeController {
 	 */
 	static async register(ctx) {
 		let user = new UserModel();
-		user.username = ctx.request.body.username
+		user.userName = ctx.request.body.userName
 		user.nickName = ctx.request.body.nickName
-		user.password = ctx.request.body.password
+		user.passWord = ctx.request.body.passWord
 		const result = await user.save();
 		return ctx.success({
 			data: result
@@ -77,8 +77,8 @@ class HomeController {
 	 */
 	static async updateUserInfo(ctx) {
 		// 获取要更新的用户字段信息
-		const { userId, username, password, nickName } = ctx.request.body;
-		const result = await UserModel.update({ userId }, { username, password, nickName });
+		const { userId, userName, passWord, nickName } = ctx.request.body;
+		const result = await UserModel.update({ userId }, { userName, passWord, nickName });
 		return ctx.success({
 			data: result
 		});
