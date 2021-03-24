@@ -5,7 +5,7 @@ module.exports = {
     // 开发环境配置
     development: {
         mongo: {
-            uri: 'mongodb://localhost:27017/admin'
+            uri: 'mongodb://webyangpei.com:27017/admin'
         },
         mysql: {
           host: 'localhost',
