@@ -1,4 +1,4 @@
 const config = {
-    port: 3009
+    port: 3008
 }
 module.exports = config
