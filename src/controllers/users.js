@@ -1,4 +1,5 @@
-const {UserModel} = require('../models');
+const {UserModel, UserRoleModel} = require('../models');
+
 
 class HomeController {
 
@@ -9,9 +10,9 @@ class HomeController {
 	 */
 	static async register(ctx) {
 		let user = new UserModel();
-		user.userName = ctx.request.body.userName
-		user.nickName = ctx.request.body.nickName
-		user.passWord = ctx.request.body.passWord
+		user.userName = ctx.request.body.userName;
+		user.nickName = ctx.request.body.nickName;
+		user.passWord = ctx.request.body.passWord;
 		const result = await user.save();
 		return ctx.success({
 			data: result
@@ -63,7 +64,7 @@ class HomeController {
 	 */
 	static async deleteByIds(ctx) {
 		const { userId } = ctx.request.query;
-		const _userIDs = userId.split(',')
+		const _userIDs = userId.split(',');
 		const result = await UserModel.deleteMany({ userId: { $in: _userIDs } });
 		return ctx.success({
 			data: result
@@ -96,22 +97,27 @@ class HomeController {
 			});
 		}
 		// 查询用户名是否存在 -如果存在> 查询用户名密码是否存在且匹配 -如果匹配> 存入session 存入redis
-		const {username, password} = ctx.request.query
-		const result = await UserModel.find({username, password});
-		if (result && result.length) {
+		const {userName, passWord} = ctx.request.query;
+		const userInfo = await UserModel.find({userName, passWord});
+		const roleId =  await UserRoleModel.find({ userId: userInfo[0]?.userId });
+		const result = {
+			...userInfo[0],
+			roleId: roleId[0]
+		};
+		if (userInfo && userInfo.length) {
 			return ctx.success({
-				data: result[0],
+				data: result,
 				msg: '登录成功'
 			});
 			// 存入session -》 存入redis
 			ctx.session.user = {
-				username: ctx.request.query.username
-			}
+				username: ctx.request.query.userName
+			};
 		} else {
 			return ctx.error({
 				code: 11,
 				msg: '用户名或者密码不存在'
-			})
+			});
 		}
 	}
 
