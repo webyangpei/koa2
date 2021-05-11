@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 const {connectDB} = require('./src/models/db');
 const {API} = require('./src/index');
 const tokenConfig = { privateKey: 'xxxxxxx' }; // 设置加密私钥
+const { portIsInUse } = require('./src/utils');
 
 const app = new Koa();
 
@@ -48,12 +49,20 @@ app.use(require('./src/middlewares/filter'));
 app.use(API.routes()).use(API.allowedMethods());
 
 
-// 等待数据库连接成功 然后启动程序
-connectDB().then(() => {
-	app.listen(config.port, () => {
-		console.log('Server is running listen on port: ' + config.port)
-	})
-
+// 等待数据库连接成功
+connectDB().then(res => {
+  let _port = config.port;
+  app.listen(_port)
+  console.log('Server is running listen on port: ' + _port)
+  // while (!portIsInUse(_port)) {
+  //   _port += 1;
+  // }
+  // setTimeout(() => {
+  //   if (portIsInUse(_port)) {
+  //     app.listen(_port)
+  //     console.log('Server is running listen on port: ' + _port)
+  //   }
+  // }, 3000)
 })
 
 module.exports = app;
