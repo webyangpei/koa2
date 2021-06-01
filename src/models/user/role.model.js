@@ -12,4 +12,5 @@ const RoleSchema = new Schema({
 	updatedAt: { type: Date, default: Date.now } //修改时间
 }, { versionKey: false })
 
-module.exports = mongoose.model('Role', RoleSchema);
+global.RoleSchema = global.RoleSchema || mongoose.model('Role', RoleSchema);
+module.exports = global.RoleSchema;

@@ -99,7 +99,7 @@ class HomeController {
 		// 查询用户名是否存在 -如果存在> 查询用户名密码是否存在且匹配 -如果匹配> 存入session 存入redis
 		const {userName, passWord} = ctx.request.query;
 		const userInfo = await UserModel.find({userName, passWord});
-		const roleId =  await UserRoleModel.find({ userId: userInfo[0]?.userId });
+		const roleId =  await UserRoleModel.find({ userId: userInfo[0].userId });
 		const result = {
 			...userInfo[0],
 			roleId: roleId[0]

@@ -16,4 +16,5 @@ const UserSchema = new Schema({
     updatedAt: { type: Date, default: Date.now } //修改时间
 }, { versionKey: false })
 
-module.exports = mongoose.model('User', UserSchema);
+global.UserSchema = global.UserSchema || mongoose.model('User', UserSchema);
+module.exports = global.UserSchema;
