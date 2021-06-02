@@ -100,10 +100,7 @@ class HomeController {
 		const {userName, passWord} = ctx.request.query;
 		const userInfo = await UserModel.find({userName, passWord});
 		const roleId =  await UserRoleModel.find({ userId: userInfo[0].userId });
-		const result = {
-			...userInfo[0],
-			roleId: roleId[0]
-		};
+		const result = Object.assign(userInfo[0], { roleId: roleId[0] })
 		if (userInfo && userInfo.length) {
 			return ctx.success({
 				data: result,
